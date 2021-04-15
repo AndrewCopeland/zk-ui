@@ -1,7 +1,10 @@
 <html>
 	<head>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/new.css" rel="stylesheet">
+		<link href="/static/styles.css" rel="stylesheet">
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
 	</head>
 	<body onload="render()">
 		<div class="row">
@@ -14,11 +17,17 @@
 				<ul id="cards" class="nav flex-column">
 				</ul>
 			</div>
+
 			<!-- main display component -->
-			<div id="main" class="col-12 col-md-6 md-display"></div>
+			<div id="main" class="col-12 col-md-7 md-display"></div>
+
 			<!-- action buttons -->
-			<div class="col-12 col-md-3 side-actions" id="actions">
+			<div class="col-12 col-md-2 side-actions" id="actions">
 				<ul id="action-items" class="nav flex-column">
+					<hr></hr>
+					<li class="nav-item action-item">
+						<a id="action-new-vs-code" class="nav-link green" onclick="uiNewVSCode()">New VS Code</a>
+					</li>
 					<li class="nav-item action-item">
 						<a id="action-add-link" class="nav-link green" onclick="uiAddLink()">Add Link</a>
 					</li>
