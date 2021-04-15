@@ -40,3 +40,8 @@ function apiOpenCode(title) {
     url = URL +  "/notes/" + title + "/open-code"
     getData(url, null, function(parent, response){})
 }
+
+function apiNewCode(title, parent, callback) {
+    url = URL +  "/notes/" + title + "/new-code"
+    getData(url, null, function(parent, response){})
+}

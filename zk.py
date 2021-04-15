@@ -20,3 +20,6 @@ def open_code(title):
 
 def search(search):
     return _str_to_list(_subprocess(['zk', 'search', search]))
+
+def new_code(title):
+    return _subprocess(['zk', 'new-code', title])

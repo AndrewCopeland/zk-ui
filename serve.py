@@ -43,6 +43,11 @@ def open_code(title):
     result =  zk.open_code(title)
     return result
 
+@app.route("/api/notes/<title>/new-code", methods=['GET'])
+def new_code(title):
+    result =  zk.new_code(title)
+    return result
+
 # run the application
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
