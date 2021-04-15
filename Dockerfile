@@ -14,5 +14,7 @@ COPY serve.py .
 COPY templates templates
 COPY static static
 COPY wsgi.py .
+COPY zk.py .
+
 # Run the application:
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
