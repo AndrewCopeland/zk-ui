@@ -1,0 +1,38 @@
+.side-navbar {
+	background-color: rgba(52, 58, 64, .5);
+	color: white;
+}
+
+.nav-item {
+	cursor: pointer;
+}
+
+.nav-item:hover {
+	cursor: pointer;
+	background-color: grey;
+}
+
+body {
+	background-color: black;
+}
+
+.md-display {
+	color: white;
+}
+
+.side-actions {
+	background-color: rgba(52, 58, 64, .5);
+	color: white;
+}
+
+.green {
+	background-color: green;
+}
+
+.red {
+	background-color: red;
+}
+
+.action-item {
+	border: 1px solid rgba(52, 58, 64, .5);
+}

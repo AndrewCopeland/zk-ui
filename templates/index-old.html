@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZK UI</title>
+    <meta name="description" content="Darkster is a free, open source Bootstrap 4 theme" />
+    <meta name="generator" content="Themestr.app">
+    <link rel="icon" href="http://themes.guide/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://themes.guide/favicon.ico" type="image/x-icon" />
+    <meta property="og:image" name="twitter:image" content="http://bootstrap.themes.guide/assets/ss_darkster.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ThemesGuide">
+    <meta name="twitter:creator" content="@ThemesGuide">
+    <meta name="twitter:title" content="Open-source Bootstrap 4 Themes">
+    <meta name="twitter:description" content="Download Darkster - free, open source Bootstrap 4 theme by Themes.guide">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
+    <link href="/static/theme.css" rel="stylesheet">
+    <link href="/static/template.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  </head>
+
+  
+  <body data-spy="scroll" data-target="#navbar1" data-offset="60" onload="render()">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary" id="navbar1">
+        <div class="container">
+            <a class="navbar-brand mr-1 mb-1 mt-0" href="../">ZK</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse justify-content-center" id="collapsingNavbar">
+                <ul class="navbar-nav">
+                  <div class="nav-link" href="#" id="themesDd">
+                    <input class="form-control" id="notes-search" type="text" value="">
+                  </div>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Settings
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDd">
+                            <a class="px-2">Github URL:               </a>
+                            <input class="form-control" id="settings-github-url" type="text" value="">
+                            <a class="px-2">Github Directory:         </a>
+                            <input class="form-control" id="settings-github-directory" type="text" value="">
+                            <button class="btn btn-secondary w-100" id="settings-submit" onclick="settingsSubmit()">Submit</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    <main>
+        <div id="cards" class="container pb-3">
+            <hr></hr><hr></hr><hr></hr><hr></hr><hr></hr><hr></hr>
+            <a>hello</a>
+        </div>
+    </main>
+        <footer id="footer" class="bg-dark text-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-6 mb-2 text-right">
+                    <h6 class="text-uppercase">Follow</h6>
+                    <ul class="nav float-right">
+                        <li><a class="text-white mr-2" rel="nofollow" href="http://twitter.com/ThemesGuide" title="Follow on Twitter"><i class="h1 fa fa-fw fa-twitter fa-2x ion-logo-twitter"></i></a></li>
+                        <li><a class="text-white mr-2" rel="nofollow" href="https://www.facebook.com/codeply" title="Follow on Facebook"><i class="h1 fa fa-fw fa-facebook fa-2x ion-logo-facebook"></i></a></li>
+                        <li><a class="text-white mr" rel="nofollow" href="https://github.com/ThemesGuide/bootstrap-themes" title="Follow on GitHub"><i class="h1 fa fa-fw fa-facebook fa-2x ion-logo-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+    </footer>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/static/scripts.js"></script>
+    <script src="/static/api.js"></script>
+    <script src="/static/ui.js"></script>
+    <script src="/static/markdown.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+</body>
+</html>
