@@ -1,56 +1,60 @@
 <html>
-	<head>
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/styles.css" rel="stylesheet">
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 
-	</head>
-	<body onload="render()">
-		<div class="row">
-			<!-- side nav bar -->
-			<div class="col-12 col-md-3 side-navbar">
-				<div class="form-outline">
-					<input type="search" id="notes-search" class="form-control" placeholder="Search"
-					aria-label="Search" />
-				  </div>
-				<ul id="cards" class="nav flex-column">
-				</ul>
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
+</head>
+
+<body onload="render()">
+	<div class="row">
+		<!-- side nav bar -->
+		<div class="col-12 col-md-3 side-navbar">
+			<div class="form-outline">
+				<input type="search" id="notes-search" class="form-control" placeholder="Search" aria-label="Search" />
 			</div>
-
-			<!-- main display component -->
-			<div id="main" class="col-12 col-md-7 md-display"></div>
-
-			<!-- action buttons -->
-			<div class="col-12 col-md-2 side-actions" id="actions">
-				<ul id="action-items" class="nav flex-column">
-					<hr></hr>
-					<li class="nav-item action-item">
-						<a id="action-new-vs-code" class="nav-link green" onclick="uiNewVSCode()">New VS Code</a>
-					</li>
-					<li class="nav-item action-item">
-						<a id="action-add-link" class="nav-link green" onclick="uiAddLink()">Add Link</a>
-					</li>
-					<li class="nav-item action-item">
-						<a id="action-open-browser" class="nav-link green" onclick="uiOpenBrowser()">Open Github</a>
-					</li>
-					<li class="nav-item action-item">
-						<a id="action-open-vs-code" class="nav-link green" onclick="uiOpenVSCode()">Open VS Code</a>
-					</li>
-					<hr></hr>
-					<li class="nav-item action-item">
-						<a id="action-remove-link" class="nav-link red" onclick="uiRemoveLink()">Remove Link</a>
-					</li>
-					<li class="nav-item action-item">
-						<a id="action-delete-note" class="nav-link red" onclick="uiRemoveNote()">Delete</a>
-					</li>
-				</ul>
-			</div>
+			<ul id="cards" class="nav flex-column">
+			</ul>
 		</div>
-	</body>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="/static/api.js"></script>
-    <script src="/static/ui.js"></script>
-    <script src="/static/markdown.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+		<!-- main display component -->
+		<div id="main" class="col-12 col-md-7 md-display"></div>
+
+		<!-- action buttons -->
+		<div class="col-12 col-md-2 side-actions" id="actions">
+			<ul id="action-items" class="nav flex-column">
+				<hr>
+				</hr>
+				<li class="nav-item action-item">
+					<a id="action-new-vs-code" class="nav-link green" onclick="uiNewVSCode()">New VS Code</a>
+				</li>
+				<li class="nav-item action-item">
+					<a id="action-add-link" class="nav-link green" onclick="uiAddLink()">Add Link</a>
+				</li>
+				<li class="nav-item action-item">
+					<a id="action-open-browser" class="nav-link green" onclick="uiOpenBrowser()">Open Github</a>
+				</li>
+				<li class="nav-item action-item">
+					<a id="action-open-vs-code" class="nav-link green" onclick="uiOpenVSCode()">Open VS Code</a>
+				</li>
+				<hr>
+				</hr>
+				<li class="nav-item action-item">
+					<a id="action-remove-link" class="nav-link red" onclick="uiRemoveLink()">Remove Link</a>
+				</li>
+				<li class="nav-item action-item">
+					<a id="action-delete-note" class="nav-link red" onclick="uiRemoveNote()">Delete</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="/static/api.js"></script>
+<script src="/static/ui.js"></script>
+<script src="/static/markdown.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 </html>
