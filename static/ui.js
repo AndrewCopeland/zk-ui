@@ -1,32 +1,19 @@
 LS_SELECTED_NOTE="selected-note"
-
-
-
-var html = `
-  <div>
-    <span>Some HTML here</span>
-  </div>
-`
-
-// var noteHTML = `
-// <div class="d-flex my-3">
-//     <div id="{{ item }}" class="jumbotron w-100 py-5 mx-auto" onclick="uiViewNote('{{ item }}')">
-// 		<div class="clickable">
-//         	<h4>{{ item }}</h4>
-// 		</div>
-// 		<div class="note-content">
-// 			<div class="hidden-note">
-// 			</div>
-// 		</div>
-// 	</div>
-// </div>
-// `
+LS_STATUS="status"
 
 var noteHTML = `
-<li class="nav-item">
+<li id="{{ item }}" class="nav-item">
 	<a class="nav-link" onclick="uiViewNote('{{ item }}')">{{ item }}</a>
 </li>
 `
+
+// document.onkeypress = function (e) {
+//     // DOWN ARROW
+// 	if (event.keyCode === 40) {
+// 		renderKeySelectNote()
+// 	}
+// }
+
 
 search = document.getElementById("notes-search")
 main = document.getElementById("main")
@@ -56,6 +43,15 @@ function getLocalNotes() {
 	return JSON.parse(localStorage.getItem("notes"))
 }
 
+function setSelectedNote(title) {
+	previous = document.getElementById(localStorage.getItem(LS_SELECTED_NOTE))
+	if (previous != null) {
+		previous.classList.remove('selected-note')
+	}
+	localStorage.setItem(LS_SELECTED_NOTE, title)
+	document.getElementById(title).classList.add('selected-note')
+}
+
 // Render functions
 function renderListNotes() {
 	cards = getCards()
@@ -82,6 +78,18 @@ function renderHardSearchNotes(search) {
 	apiListNotes(search, renderListNotes)
 }
 
+function renderKeySelectNote() {
+	cards = getCards()
+	status = localStorage.getItem(LS_STATUS)
+	if (status == "active") {
+		current = document.getElementById(localStorage.getItem(LS_SELECTED_NOTE))
+
+	}
+	title = cards.firstChild.innerText
+	uiViewNote(title)
+	localStorage.setItem(LS_STATUS, 'active')
+}
+
 var callbackViewNote =  function(parent, content) {
 	parent.innerHTML = markdown.toHTML(content)	
 }
@@ -97,8 +105,8 @@ function uiSearchNotes() {
 }
 
 function uiViewNote(title) {
-	localStorage.setItem(LS_SELECTED_NOTE, title)
 	apiCatNote(title, main, callbackViewNote)
+	setSelectedNote(title)
 }
 
 function uiOpenBrowser() {
@@ -109,19 +117,32 @@ function uiOpenVSCode() {
 	apiOpenCode(localStorage.getItem(LS_SELECTED_NOTE))
 }
 
+function uiNewVSCode() {
+	alertify.prompt( 'New note', 'Title', ''
+        , function(evt, value) { 
+			apiNewCode(value)
+		}
+        , function() { 
+			alertify.error('Cancel') 
+	});
+}
+
 function render() {
 	uiListNotes()
 	title = localStorage.getItem(LS_SELECTED_NOTE)
 	uiViewNote(title)
 }
 
-
-search.onkeyup = function(){
-    renderSearchNotes(search.value);
-}
-
 search.addEventListener("keyup", function(event){
+	renderSearchNotes(search.value)
+	// ENTER
     if (event.keyCode === 13) {
         renderHardSearchNotes(search.value)
     }
+	// DOWN ARROW
+	if (event.keyCode === 40) {
+		renderKeySelectNote()
+	}
+
+	localStorage.setItem(LS_STATUS, 'inactive')
 })
