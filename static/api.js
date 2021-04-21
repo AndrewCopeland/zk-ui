@@ -43,5 +43,16 @@ function apiOpenCode(title) {
 
 function apiNewCode(title, parent, callback) {
     url = URL +  "/notes/" + title + "/new-code"
-    getData(url, null, function(parent, response){})
+    getData(url, parent, callback)
 }
+
+function apiRemoveCode(title, parent, callback) {
+    url = URL +  "/notes/" + title + "/remove"
+    getData(url, parent, callback)
+}
+
+function apiLinkNotes(title, linkTitle, parent, callback) {
+    url = URL +  "/notes/" + title + "/link/" + linkTitle
+    getData(url, parent, callback)
+}
+ 

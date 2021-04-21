@@ -3,7 +3,7 @@ LS_STATUS="status"
 
 var noteHTML = `
 <li id="{{ item }}" class="nav-item">
-	<a class="nav-link" onclick="uiViewNote('{{ item }}')">{{ item }}</a>
+	<a class="nav-link">{{ item }}</a>
 </li>
 `
 
@@ -43,13 +43,30 @@ function getLocalNotes() {
 	return JSON.parse(localStorage.getItem("notes"))
 }
 
+function getSelectedNote() {
+	return localStorage.getItem(LS_SELECTED_NOTE)
+}
+
 function setSelectedNote(title) {
 	previous = document.getElementById(localStorage.getItem(LS_SELECTED_NOTE))
 	if (previous != null) {
 		previous.classList.remove('selected-note')
 	}
 	localStorage.setItem(LS_SELECTED_NOTE, title)
-	document.getElementById(title).classList.add('selected-note')
+
+	current = document.getElementById(title)
+	if (current != null) {
+		current.classList.add('selected-note')
+	}
+}
+
+function getSelectedNoteFromURL() {
+	parts = window.location.href.split("/")
+	title = parts[parts.length - 1]
+	if (title.endsWith(".md")) {
+		return title
+	}
+	return null
 }
 
 // Render functions
@@ -91,7 +108,21 @@ function renderKeySelectNote() {
 }
 
 var callbackViewNote =  function(parent, content) {
-	parent.innerHTML = markdown.toHTML(content)	
+	parent.innerHTML = DOMPurify.sanitize(marked(content))
+}
+
+var callbackNewVSCode = function() {
+	
+}
+
+var callbackRemoveNote = function(parent, content) {
+	parent.innerHTML = ""
+	uiListNotes()
+	alertfy.error("Note deleted")
+}
+
+var callbackLinkNote = function() {
+	alertify.success("Linked notes")
 }
 
 
@@ -118,18 +149,50 @@ function uiOpenVSCode() {
 }
 
 function uiNewVSCode() {
+	// prompt for note title
 	alertify.prompt( 'New note', 'Title', ''
         , function(evt, value) { 
-			apiNewCode(value)
+			apiNewCode(value, main, function() {
+				uiListNotes();
+				uiViewNote(value);
+			})
 		}
         , function() { 
 			alertify.error('Cancel') 
 	});
 }
 
+function uiRemoveNote() {
+	title = getSelectedNote()
+	alertify.confirm( 'Delete Note', 'Delete Note ' + title
+	, function(evt, value) {
+		apiRemoveCode(title, main, callbackRemoveNote)
+		// apiNewCode(value, main, callbackNewVSCode)
+	}
+	, function() { 
+		alertify.error('Cancel') 
+	});
+	
+}
+
+function uiLinkNote(title, link_title) {
+	alertify.confirm( 'Link Notes', 'Link ' + title + ' & ' + link_title
+	, function(evt, value) {
+		apiLinkNotes(title, link_title, null, callbackLinkNote)
+	}
+	, function*() {
+		alertify.error("Cancel")
+	});
+}
+
 function render() {
 	uiListNotes()
-	title = localStorage.getItem(LS_SELECTED_NOTE)
+	title = getSelectedNoteFromURL()
+	if (title != null) {
+		setSelectedNote(title)
+	} else {
+		title = localStorage.getItem(LS_SELECTED_NOTE)
+	}
 	uiViewNote(title)
 }
 
@@ -146,3 +209,34 @@ search.addEventListener("keyup", function(event){
 
 	localStorage.setItem(LS_STATUS, 'inactive')
 })
+
+
+// When code is clicked copy to clipboard
+document.addEventListener('click', function (event) {
+	if (!event.target.matches('code')) return;
+	copyTextToClipboard(event.target.innerText)
+	alertify.success("Copied to clipboard")
+}, false);
+
+
+// When a note is click select it
+// or if shift it used link it
+document.addEventListener('click', function (event) {
+	if (!event.target.matches('a.nav-link')) return;
+	// console.log(event)
+
+	// View the note if shift was not provided
+	if(!event.shiftKey) {
+		uiViewNote(event.target.innerText)
+		return
+	}
+
+	// Link note if shift was provided
+	selectedNote = getSelectedNote()
+	if (selectedNote == null) {
+		alertify.error("No selected note")
+		return
+	}
+
+	uiLinkNote(selectedNote, event.target.innerText)
+}, false);

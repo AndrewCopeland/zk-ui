@@ -23,3 +23,9 @@ def search(search):
 
 def new_code(title):
     return _subprocess(['zk', 'new-code', title])
+
+def remove(title):
+    return _subprocess(['zk', 'remove', title])
+
+def link(title, link_title):
+    return _subprocess(['zk', 'link', title, link_title])

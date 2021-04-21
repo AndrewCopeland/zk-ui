@@ -48,6 +48,16 @@ def new_code(title):
     result =  zk.new_code(title)
     return result
 
+@app.route("/api/notes/<title>/remove", methods=['GET'])
+def remove(title):
+    result =  zk.remove(title)
+    return result
+
+@app.route("/api/notes/<title>/link/<link_title>", methods=['GET'])
+def link(title, link_title):
+    result =  zk.link(title, link_title)
+    return result
+
 # run the application
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
