@@ -31,16 +31,3 @@ function copyTextToClipboard(text) {
   document.body.removeChild(textArea);
   return false;
 }
-
-
-function settingsSubmit() {
-    url = document.getElementById("settings-github-url").value
-    dir = document.getElementById("settings-github-directory").value
-
-    if (url == "" || url == null || url == undefined) {
-        alertify.alert("Error", "Github URL is not set", function(){});
-        return
-    }
-
-    
-}
