@@ -3,15 +3,10 @@
 	color: white;
 }
 
-.nav-item {
-	cursor: pointer;
-}
-
 .nav-item:hover {
 	cursor: pointer;
 	background-color: grey;
 }
-
 
 
 body {
@@ -39,16 +34,19 @@ body {
 	border: 1px solid rgba(52, 58, 64, .5);
 }
 
+.action-item:hover {
+	cursor: pointer;
+}
+
 .selected-note {
 	background-color: grey;
 }
 
-code {
+pre {
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 
-
-code {
+pre {
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
@@ -63,6 +61,6 @@ code {
 	
 }
 
-code:hover {
+pre:hover {
 	cursor: pointer;
 }
