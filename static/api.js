@@ -36,9 +36,9 @@ function apiOpenBrowser(title) {
     getData(url, null, function(parent, response){})
 }
 
-function apiOpenCode(title) {
+function apiOpenCode(title, parent, callback) {
     url = URL +  "/notes/" + title + "/open-code"
-    getData(url, null, function(parent, response){})
+    getData(url, parent, callback)
 }
 
 function apiNewCode(title, parent, callback) {

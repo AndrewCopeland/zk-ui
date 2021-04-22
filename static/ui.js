@@ -3,7 +3,7 @@ LS_STATUS="status"
 
 var noteHTML = `
 <li id="{{ item }}" class="nav-item">
-	<a class="nav-link">{{ item }}</a>
+	<a class="nav-link note-item">{{ item }}</a>
 </li>
 `
 
@@ -28,7 +28,7 @@ function renderComponent(parent, template, item) {
 }
 
 function renderComponents(parent, template, response) {
-	console.log(response)
+	// console.log(response)
 	response.forEach(function (item, index) {
 		// console.log(item, index);
 		renderComponent(parent, template, item)
@@ -111,10 +111,6 @@ var callbackViewNote =  function(parent, content) {
 	parent.innerHTML = DOMPurify.sanitize(marked(content))
 }
 
-var callbackNewVSCode = function() {
-	
-}
-
 var callbackRemoveNote = function(parent, content) {
 	parent.innerHTML = ""
 	uiListNotes()
@@ -145,7 +141,11 @@ function uiOpenBrowser() {
 }
 
 function uiOpenVSCode() {
-	apiOpenCode(localStorage.getItem(LS_SELECTED_NOTE))
+	title = getSelectedNote()
+	apiOpenCode(title, main, function() {
+		uiListNotes();
+		uiViewNote(title);
+	})
 }
 
 function uiNewVSCode() {
@@ -213,7 +213,7 @@ search.addEventListener("keyup", function(event){
 
 // When code is clicked copy to clipboard
 document.addEventListener('click', function (event) {
-	if (!event.target.matches('code')) return;
+	if (!event.target.matches('pre')) return;
 	copyTextToClipboard(event.target.innerText)
 	alertify.success("Copied to clipboard")
 }, false);
@@ -222,7 +222,7 @@ document.addEventListener('click', function (event) {
 // When a note is click select it
 // or if shift it used link it
 document.addEventListener('click', function (event) {
-	if (!event.target.matches('a.nav-link')) return;
+	if (!event.target.matches('a.note-item')) return;
 	// console.log(event)
 
 	// View the note if shift was not provided
