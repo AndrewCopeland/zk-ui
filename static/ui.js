@@ -175,6 +175,10 @@ function uiRemoveNote() {
 	
 }
 
+function uiRemoveLink() {
+	alertify.error("Not implemented")
+}
+
 function uiLinkNote(title, link_title) {
 	alertify.confirm( 'Link Notes', 'Link ' + title + ' & ' + link_title
 	, function(evt, value) {
