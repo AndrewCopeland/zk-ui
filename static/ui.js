@@ -1,5 +1,6 @@
 LS_SELECTED_NOTE="selected-note"
 LS_STATUS="status"
+LS_SEARCH="search"
 
 var noteHTML = `
 <li id="{{ item }}" class="nav-item">
@@ -67,6 +68,14 @@ function getSelectedNoteFromURL() {
 		return title
 	}
 	return null
+}
+
+function setSearch(currentSearch) {
+	localStorage.setItem(LS_SEARCH, currentSearch)
+}
+
+function getSearch() {
+	return localStorage.getItem(LS_SEARCH)
 }
 
 // Render functions
@@ -190,18 +199,25 @@ function uiLinkNote(title, link_title) {
 }
 
 function render() {
-	uiListNotes()
+	searchContent = getSearch()
+	if (searchContent == "" || searchContent == null) {
+		uiListNotes()
+	} else {
+		renderSearchNotes(searchContent)
+	}
+	
 	title = getSelectedNoteFromURL()
 	if (title != null) {
 		setSelectedNote(title)
 	} else {
-		title = localStorage.getItem(LS_SELECTED_NOTE)
+		title = getSelectedNote()
 	}
 	uiViewNote(title)
 }
 
 search.addEventListener("keyup", function(event){
 	renderSearchNotes(search.value)
+	setSearch(search.value)
 	// ENTER
     if (event.keyCode === 13) {
         renderHardSearchNotes(search.value)
@@ -231,7 +247,7 @@ document.addEventListener('click', function (event) {
 
 	// View the note if shift was not provided
 	if(!event.shiftKey) {
-		uiViewNote(event.target.innerText)
+		window.location.replace(event.target.innerText)
 		return
 	}
 
