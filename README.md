@@ -1,6 +1,8 @@
 # zk-ui
+The zk-ui is the website wrapper for the [zk command line utiltiy](https://github.com/AndrewCopeland/zettelkasten)
 
-Wanna Dev?
+
+### Start the server
 ```bash
 python3 -m venv venv
 source ./venv/bin/activate
