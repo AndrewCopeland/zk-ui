@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker build -t dev-utils:latest . && docker run -p 5000:5000 dev-utils:latest
