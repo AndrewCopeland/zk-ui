@@ -121,9 +121,8 @@ var callbackViewNote =  function(parent, content) {
 }
 
 var callbackRemoveNote = function(parent, content) {
-	parent.innerHTML = ""
+	alertify.success("Deleted note")
 	uiListNotes()
-	alertfy.error("Note deleted")
 }
 
 var callbackLinkNote = function() {
@@ -175,6 +174,7 @@ function uiRemoveNote() {
 	title = getSelectedNote()
 	alertify.confirm( 'Delete Note', 'Delete Note ' + title
 	, function(evt, value) {
+		main.innerHTML = ""
 		apiRemoveCode(title, main, callbackRemoveNote)
 		// apiNewCode(value, main, callbackNewVSCode)
 	}
@@ -215,6 +215,7 @@ function render() {
 	uiViewNote(title)
 }
 
+// When a search key is typed
 search.addEventListener("keyup", function(event){
 	renderSearchNotes(search.value)
 	setSearch(search.value)
